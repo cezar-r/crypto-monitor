@@ -1,17 +1,9 @@
-from cryptos import Cardano
-from cryptos import Bitcoin
-from cryptos import Ethereum
-from cryptos import Doge
+from cryptos import Cardano, Bitcoin, Ethereum, Doge
 import requests
 import json
 from datetime import datetime, timedelta
 import smtplib
 import time
-
-# monitor ada, btc, eth, doge
-#	get json file from each crypto, only check for latest price
-# if a price level is turned from false to true, ping
-# update price levels based on cur price
 
 
 def get_json(coin_str):
@@ -47,19 +39,15 @@ def get_cur_price(json):
 
 def send_msg(price, crypto):
 	content = f'{crypto} is at {price}'
-	reciever = '6233377431@txt.att.net'
-	my_email = '00wakeup001@gmail.com'
-	my_email_pw = 'Tennis1-2-3-'
-
-	caibel = '7606684991@vtext.com'
+	reciever = '<RECIEVER INFO HERE>'
+	my_email = '<EMAIL THAT IS SENDING TEXTS>'
+	my_email_pw = '<EMAIL PASSWORD>'
 
 	mail = smtplib.SMTP('smtp.gmail.com', 587)
 	mail.ehlo()
 	mail.starttls()
 	mail.login(my_email, my_email_pw)
 	mail.sendmail(my_email, reciever, content)
-	mail.sendmail(my_email, caibel, content)
-
 
 def doge_possible_alert(price, crypto = "Doge"):
 	if price < .1 and doge.under_10 == False:
