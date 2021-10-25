@@ -12,7 +12,7 @@ client = Client(account_sid, auth_token)
 CRYPTOS = ['BTC', 'ETH', 'SOL', 'ADA', 'DOT', 'LINK', 'COTI', 'LTC', 'SHIB', 'ALGO']
 
 reciever = ['+16233377431', '+17606684991']
-delay = 60 # seconds
+DELAY = 60 # seconds
 
 
 class Alerts:
@@ -29,22 +29,24 @@ class Alerts:
 		while True:
 			for ticker, coin in list(self.coins.items()):
 				self._request(ticker, coin)
-			print(datetime.now())
-			time.sleep(delay)
+			print(f'|{datetime.now()}|')
+			time.sleep(DELAY)
 
 
 	def _request(self, ticker, coin):
 		try:
 			price, prev_price, timestamp, up = coin.check()
 			if price:
-				send_msg(ticker, price, prev_price, timestamp, up)
+				self.send_msg(ticker, price, prev_price, timestamp, up)
 		except Exception as e:
 			print(f'|{datetime.now()}|Exception: {str(e)}, sleeping 60 sec |{ticker} ')
 			time.sleep(60)
 			self._request(ticker, coin)
 
 
-	def send_msg(self, ticker, price, prev_privce, timestamp, up):
+	def send_msg(self, ticker, price, prev_price, timestamp, up):
+		str_price = str(price)
+		str_prev_price = str(prev_price)
 		if up:
 			up = "up"
 		else:
@@ -54,10 +56,16 @@ class Alerts:
 			timestamp /= 60
 		else:
 			hours = "minute"
-			if hours != 1:
+			if int(hours) != 1:
 				hours += "s"
-		content = f'{ticker.upper()} is {up} from {prev_price} to {price} ({float(price/prev_price) * 100}%) in the past {timestamp} {hours}'
-		print(f'|{time.ctime()}| {content}')
+		if ticker == 'SHIB':
+			str_price = "{:.8f}".format(price)
+			str_prev_price = "{:.8f}".format(prev_price)
+		if price > 1:
+			str_price = str(round(price, 2))
+			str_prev_price = str(round(prev_price, 2))
+		content = f'{ticker.upper()} is {up} from ${str_prev_price} to ${str_price} ({round(float((price-prev_price)/prev_price) * 100, 2)}%) in the past {timestamp} {hours}'
+		print(f'|{datetime.now()}| {content}')
 		self._send_all(reciever, content)
 
 
@@ -75,5 +83,3 @@ class Alerts:
 
 if __name__ == '__main__':
 	alerts = Alerts()
-
-
