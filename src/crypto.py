@@ -15,14 +15,16 @@ class Crypto():
 			del self.prices[(list(self.prices.keys()))[0]]
 		price = float(kucoin.get_price(self.ticker))
 		timestamp = datetime.now()
-		for prev_timestamp in list(self.prices.keys())[::-1]:
-			if price/self.prices[prev_timestamp] <= .97:
+		print('')
+		print(self.ticker, '-', price)
+		print(f'Entries: {len(list(self.prices.keys()))}')
+		for prev_timestamp, prev_price in list(self.prices.items())[::-1]:
+			if price/prev_price <= .97:
 				self.prices = {}
-				return price, self.prices[prev_timestamp], int((timestamp -  prev_timestamp).total_seconds() * 60), False
-			elif price/self.prices[prev_timestamp] >= 1.03:
+				return price, prev_price, int((timestamp -  prev_timestamp).total_seconds() / 60), False
+			elif price/prev_price >= 1.03:
 				self.prices = {}
-				return price, self.prices[prev_timestamp], int((timestamp -  prev_timestamp).total_seconds() * 60), True
-			self.noti = False
+				return price, prev_price, int((timestamp -  prev_timestamp).total_seconds() / 60), True
 		self.prices[timestamp] = price
 		return False, False, False, False
 				
