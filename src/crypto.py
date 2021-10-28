@@ -19,10 +19,10 @@ class Crypto():
 		print(self.ticker, '-', price)
 		print(f'Entries: {len(list(self.prices.keys()))}')
 		for prev_timestamp, prev_price in list(self.prices.items())[::-1]:
-			if price/prev_price <= .97:
+			if price/prev_price <= .95:
 				self.prices = {}
 				return price, prev_price, int((timestamp -  prev_timestamp).total_seconds() / 60), False
-			elif price/prev_price >= 1.03:
+			elif price/prev_price >= 1.05:
 				self.prices = {}
 				return price, prev_price, int((timestamp -  prev_timestamp).total_seconds() / 60), True
 		self.prices[timestamp] = price
