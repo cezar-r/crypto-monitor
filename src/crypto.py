@@ -28,10 +28,3 @@ class Crypto():
 		self.prices[timestamp] = price
 		return False, False, False, False
 				
-
-
-if __name__ == '__main__':
-	while True:
-		btc = Crypto('BTC')
-		btc.check()
-		time.sleep(60)
