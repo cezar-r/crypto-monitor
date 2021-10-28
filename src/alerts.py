@@ -3,15 +3,14 @@ from datetime import datetime
 from twilio.rest import Client
 from crypto import Crypto
 
-MYNUMBER = '+18706212431'
-account_sid = 'ACe48f94e900c18892f7148d549cae1f5c'
-auth_token = '9082f5c18f083ce1b1b673161baeece4'
-'''RECOVERY CODE 6KO5wLUndNMbE-jNKOS55CeuIDeeKbFgqBM3uact'''
+MYNUMBER = '<my_number>'
+account_sid = '<account_sid>'
+auth_token = '<auth_token>'
 client = Client(account_sid, auth_token)
 
 CRYPTOS = ['BTC', 'ETH', 'SOL', 'ADA', 'DOT', 'LINK', 'COTI', 'LTC', 'SHIB', 'ALGO']
 
-reciever = ['+16233377431', '+17606684991']
+reciever = []
 DELAY = 60 # seconds
 
 
