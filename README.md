@@ -12,6 +12,14 @@ Each crypto is stored as its own object during runtime. One of the attributes of
 ## Sending Messages
 Once a change in price has occurred a text needs to be sent. To do this, I utilized [Twilio](https://www.twilio.com/docs/usage/api), which made it very simple to send out text messages.
 
+## In Action
+ - Below is an example of the pings you would recieve using the monitor. 
+<img src = "https://github.com/cezar-r/crypto-monitor/blob/main/monitor_ss.jpeg" width = 200 height = 380> 
+
+ - I personally use Coinbase and I realized that Coinbase sends "significant price action" notifications much later than when they actually occur, which was one of my main motives for making this monitor. Below you can see the time difference between the monitor and Coinbase's notifications.
+<img src = "https://github.com/cezar-r/crypto-monitor/blob/main/monitor_vs_coinbase.jpg" width = 200 height = 350> 
+
+
 ## TODO
 My main goal with this program is to convert it to a web application that anyone can use. This website would allow you to make an account, and then store which cryptos you want to get notified for, as well what price difference threshold. 
 
