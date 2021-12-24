@@ -19,9 +19,10 @@ Once a change in price has occurred a text needs to be sent. To do this, I utili
  - I personally use Coinbase and I realized that Coinbase sends "significant price action" notifications much later than when they actually occur, which was one of my main motives for making this monitor. Below you can see the time difference between the monitor and Coinbase's notifications.
 <img src = "https://github.com/cezar-r/crypto-monitor/blob/main/monitor_vs_coinbase.jpg" width = 200 height = 350> 
 
+The small group of users that are currently recieving messages have found great utility in this monitor and they claim it has helped them a lot. For example, on December 3rd, the entire crypto market experienced a "flash crash", where prices tanked more than 20% in a matter of minutes and quickly recovered after. Because of the monitor, the group of users were able to take advantage of these low prices (that many people most likely missed out on) and where able to place orders at a much lower price.
 
 ## TODO
-My main goal with this program is to convert it to a web application that anyone can use. This website would allow you to make an account, and then store which cryptos you want to get notified for, as well what price difference threshold you want to get notified on.
+My main goal with this program is to convert it to a web application that anyone can use. This website would allow you to make an account, and then store which cryptos you want to get notified for, as well what price difference threshold you want to get notified on. 
 
 ## Technologies Used
  - KuCoin API
