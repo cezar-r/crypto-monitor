@@ -21,7 +21,7 @@ Once a change in price has occurred a text needs to be sent. To do this, I utili
 
 
 ## TODO
-My main goal with this program is to convert it to a web application that anyone can use. This website would allow you to make an account, and then store which cryptos you want to get notified for, as well what price difference threshold. 
+My main goal with this program is to convert it to a web application that anyone can use. This website would allow you to make an account, and then store which cryptos you want to get notified for, as well what price difference threshold you want to get notified on.
 
 ## Technologies Used
  - KuCoin API
