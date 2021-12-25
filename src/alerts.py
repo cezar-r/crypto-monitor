@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+File containing the Alerts object
+"""
 import time
 from datetime import datetime
 from twilio.rest import Client
@@ -15,7 +20,14 @@ DELAY = 60 # seconds
 
 
 class Alerts:
-
+	"""
+	A class representing the alert system
+	
+	Attributes
+	----------
+	coins : dict
+		Dictionary of ticker symbols and coin objets
+	"""
 	def __init__(self):
 		self.coins = {}
 		for ticker in CRYPTOS:
@@ -25,6 +37,7 @@ class Alerts:
 		self.run()
 
 	def run(self):
+		"""Method that runs the monitor"""
 		while True:
 			for ticker, coin in list(self.coins.items()):
 				self._request(ticker, coin)
@@ -33,6 +46,7 @@ class Alerts:
 
 
 	def _request(self, ticker, coin):
+		"""Method that requests the price of a given coin"""
 		try:
 			price, prev_price, timestamp, up = coin.check()
 			if price:
@@ -44,6 +58,22 @@ class Alerts:
 
 
 	def send_msg(self, ticker, price, prev_price, timestamp, up):
+		"""
+		Method that sends a texts notifying of a significant price move
+		
+		Parameters
+		----------
+		ticker : str
+			Ticker symbol
+		price : float
+			Price of ticker
+		prev_price : float
+			Previous price of ticker
+		timestamp : datetime 
+			difference in time
+		up : bool
+			Whether or not the price went up
+		"""
 		str_price = str(price)
 		str_prev_price = str(prev_price)
 		if up:
@@ -69,6 +99,7 @@ class Alerts:
 
 
 	def _send(self, reciever, content):
+		"""Method that sends a message to a reciever with given content"""
 		message = client.messages.create(
 			body=content,
 			from_=MYNUMBER,
@@ -76,6 +107,7 @@ class Alerts:
 
 
 	def _send_all(self, recievers, content):
+		"""Method that sends message to all recievers"""
 		for reciever in recievers:
 			self._send(reciever, content)
 
