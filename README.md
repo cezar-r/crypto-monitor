@@ -1,4 +1,4 @@
-# crypto-monitor
+# Crypto Monitor
 
 ### Background
 Crypto is one of the fastest growing "things" of all time. It is currently outpacing other technologies, such as the Internet, in terms of adoption. It is also outpacing every asset class, such as gold, in terms of price. Everyday, more and more people buy their first cryptocurrency, whether it be Bitcoin, Ethereum, or any of the 2000+ listed cryptocurrencies. Cryptocurrencies are also known for having a very volatile market, with some tokens moving +/- 5% in a matter of minutes. Because of this, I made this crypto monitor, which will send a text every time there is a move >= 5% on a variety of cryptos.
